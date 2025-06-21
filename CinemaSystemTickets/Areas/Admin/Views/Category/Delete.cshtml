@@ -1,0 +1,15 @@
+﻿@model CinemaSystemTickets.Models.Category
+@{
+    ViewData["Title"] = "Delete Category";
+}
+<div class="container text-light">
+    <h2 class="mb-4 text-danger">🗑️ Delete Category</h2>
+    <p>Are you sure you want to delete the category <strong class="text-warning">@Model.CategoryName</strong>?</p>
+
+    <form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="CategoryId" />
+    <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+</div

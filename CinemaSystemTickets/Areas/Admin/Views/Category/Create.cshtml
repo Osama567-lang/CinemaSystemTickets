@@ -1,0 +1,17 @@
+﻿@model CinemaSystemTickets.Models.Category
+@{
+    ViewData["Title"] = "Add Category";
+}
+<div class="container text-light">
+    <h2 class="mb-4 text-warning">➕ Add New Category</h2>
+
+    <form asp-action="Create" method="post">
+        <div class="mb-3">
+            <label asp-for="CategoryName" class="form-label text-light"></label>
+            <input asp-for="CategoryName" class="form-control bg-dark text-light border-secondary" />
+            <span asp-validation-for="CategoryName" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i> Add</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

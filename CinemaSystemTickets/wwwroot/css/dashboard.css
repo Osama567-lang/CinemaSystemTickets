@@ -1,0 +1,29 @@
+﻿.movie-card:hover,
+.actor-card:hover,
+.cinema-card:hover,
+.category-card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 15px #ffc107;
+    transition: 0.3s ease-in-out;
+}
+
+.card img {
+    transition: transform 0.5s ease;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+.movie-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #ffc107;
+    transition: 0.3s ease-in-out;
+}
+
+.movie-card img {
+    transition: transform 0.4s ease-in-out;
+}
+
+.movie-card:hover img {
+    transform: scale(1.1);
+}

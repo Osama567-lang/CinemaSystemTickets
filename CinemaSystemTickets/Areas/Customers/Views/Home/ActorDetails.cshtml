@@ -1,0 +1,110 @@
+﻿@model CinemaSystemTickets.Models.Actor
+
+<div class="container my-5 text-light">
+    <div class="row align-items-start mb-5">
+        <!-- صورة الممثل -->
+        <div class="col-md-4">
+            <img src="@Url.Content("~/images/cast/" + Model.ProfilePicture)"
+                 class="img-fluid rounded-4 shadow"
+                 style="width: 100%; height: 770px; object-fit: cover;" />
+        </div>
+
+        <!-- تفاصيل الممثل + سوشيال + أفلام -->
+        <div class="col-md-8">
+            <!-- الاسم والبايو -->
+            <h2 class="text-warning fw-bold mb-3">@Model.FirstName @Model.LastName</h2>
+            <p class="fs-5 text-light" style="line-height: 1.8;">@Model.Bio</p>
+
+            <hr class="my-4" />
+
+            <!-- تفاصيل إضافية -->
+            <h5 class="text-info mb-3"><i class="bi bi-info-circle-fill me-2"></i>Details</h5>
+            <ul class="list-unstyled fs-6">
+                <li class="mb-2"><strong class="text-success">Age:</strong> 35</li>
+                <li class="mb-2"><strong class="text-success">Country:</strong> United States</li>
+                <li class="mb-2"><strong class="text-success">Specialty:</strong> Drama, Action</li>
+                <li class="mb-2"><strong class="text-success">Years Active:</strong> 2010 - Present</li>
+            </ul>
+
+            <hr class="my-4" />
+
+            <!-- سوشيال ميديا -->
+            <h5 class="text-info mb-3"><i class="bi bi-share-fill me-2"></i>Follow</h5>
+            <div class="d-flex gap-3 mb-4">
+                <a href="https://facebook.com" class="btn btn-outline-primary rounded-circle social-icon" target="_blank" title="Facebook">
+                    <i class="bi bi-facebook fs-5"></i>
+                </a>
+                <a href="https://twitter.com" class="btn btn-outline-info rounded-circle social-icon" target="_blank" title="Twitter">
+                    <i class="bi bi-twitter-x fs-5"></i>
+                </a>
+                <a href="https://instagram.com" class="btn btn-outline-danger rounded-circle social-icon" target="_blank" title="Instagram">
+                    <i class="bi bi-instagram fs-5"></i>
+                </a>
+            </div>
+
+            <!-- فاصل بين السوشيال والأفلام -->
+            <div class="border-top border-secondary my-4"></div>
+
+            <!-- أفلام شارك فيها -->
+            <h5 class="text-warning mb-3"><i class="bi bi-film me-2"></i>Movies</h5>
+            @if (Model.ActorMovies != null && Model.ActorMovies.Count > 0)
+            {
+                <div class="row g-3">
+                    @foreach (var item in Model.ActorMovies)
+                    {
+                        var movie = item.Movie;
+                        if (movie != null)
+                        {
+                            <div class="col-4 col-sm-3 col-md-3 col-lg-2">
+                                <a asp-area="Customers"
+                                   asp-controller="Home"
+                                   asp-action="ShowDetails"
+                                   asp-route-movieID="@movie.MovieId"
+                                   class="text-decoration-none">
+                                    <div class="card bg-dark text-light h-100 border border-secondary shadow-sm rounded-4 movie-card">
+                                        <img src="@Url.Content("~/images/movies/" + movie.ImgUrl)"
+                                             class="card-img-top rounded-top-4"
+                                             style="object-fit: cover; height: 130px;" />
+                                        <div class="card-body p-1 text-center">
+                                            <small class="d-block text-warning text-truncate">@movie.MovieName</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    }
+                </div>
+            }
+            else
+            {
+                <p class="text-muted">No movies found for this actor.</p>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- أيقونات -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+<!-- ستايلات -->
+<style>
+    .social-icon {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+        .social-icon:hover {
+            transform: scale(1.15);
+            opacity: 0.9;
+        }
+
+    .movie-card:hover {
+        transform: translateY(-4px);
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(255, 193, 7, 0.2);
+    }
+</style>
